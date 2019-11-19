@@ -45,7 +45,7 @@ For more information on the onion architecture, see [Understanding Onion Archite
 Build the template on your local machine, from the root project
 
 ```
-$ dotnet new -i
+$ dotnet new -i .
 ```
 
 The template is installed with shortname 'vbswebapi'
