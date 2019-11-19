@@ -5,6 +5,7 @@
 * [Technologies](#technologies)
 * [Architecture](#architecture)
 * [Setup](#setup)
+* [Test API](#test-api)
 
 ## General info
 This project is intended to provide core functionality for a .NET Core Web API using sound (albeit opinionated) architecture and popular NuGet packages used in modern .NET Core API development.
@@ -79,3 +80,37 @@ Make sure that after the project is created you perform:
 ```
 $ dotnet restore
 ```
+
+## Test API
+
+Run the project
+
+```
+$ dotnet run
+```
+
+Open a web browser at localhost:5000/swagger
+
+![alt text](swagger.png "Swagger")
+
+### Get Users
+
+Try out and execute GET /api/Users
+
+You will get a 200 response with 1 user returned
+
+### POST New User
+
+Try out and execute POST /api/Users
+
+Update the request JSON body to your liking.
+
+You will get a 200 response with 1 user returned including a dummy ID that the server might generate from the backing database.
+
+Additionally, try empty strings or deleting properties in the JSON body entirely.  You will get a 400 type response with a list of validation errors (this is FluentValidation at work!).
+
+### GET Specifc User
+
+Try out and execute GET /api/Users/{id}
+
+You will get a 200 response with the desired user returned with that id.
