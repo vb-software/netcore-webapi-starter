@@ -1,5 +1,6 @@
 using AutoMapper;
 using Entities.AutoMapper.Profiles;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RootNamespace.Entities.Interfaces;
@@ -22,6 +23,8 @@ namespace RootNamespace.Dependencies
             SetupRepositories(services);
             // Setup concrete service classes that implement IService
             SetupServices(services);
+            // Setup DTO validators
+            SetupDTOValidators(services);
         }
 
         private static void SetupMappings(IServiceCollection services)
@@ -68,6 +71,20 @@ namespace RootNamespace.Dependencies
                         .AddClasses(classes => classes.AssignableTo<ISingleton>())
                         .AsImplementedInterfaces()
                         .WithSingletonLifetime()
+            );
+        }
+
+        private static void SetupDTOValidators(IServiceCollection services)
+        {
+            // Due to the open generic being used to identify concrete implementations using IValidator<T>...
+            // Restricting scan to DTO namespace to that additional implementations are not wired up
+            // as this was calling an aggregation exception
+            services.Scan(scan =>
+                scan
+                    .FromApplicationDependencies()
+                        .AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)).InNamespaces("Entities.DTO"))
+                        .AsImplementedInterfaces()
+                        .WithTransientLifetime()
             );
         }
     }

@@ -59,6 +59,7 @@ namespace API.Controllers
                 try
                 {
                     var user = _mapper.Map<User>(userDTO);
+                    user.ID = 999;
                     return new ApiResponse("Created successfully", user, 201);
                 }
                 catch (Exception ex)
