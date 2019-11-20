@@ -1,6 +1,6 @@
 using System;
 
-namespace Entities.Domain
+namespace RootNamespace.Entities.Domain
 {
     public class User
     {

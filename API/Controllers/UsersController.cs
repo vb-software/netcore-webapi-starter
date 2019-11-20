@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoWrapper.Extensions;
 using AutoWrapper.Wrappers;
-using Entities.Domain;
-using Entities.DTO;
+using RootNamespace.Entities.Domain;
+using RootNamespace.Entities.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace API.Controllers
+namespace RootNamespace.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

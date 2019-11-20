@@ -1,8 +1,8 @@
 using AutoMapper;
-using Entities.Domain;
-using Entities.DTO;
+using RootNamespace.Entities.Domain;
+using RootNamespace.Entities.DTO;
 
-namespace Entities.AutoMapper.Profiles
+namespace RootNamespace.Entities.AutoMapper.Profiles
 {
     public class UserMappings : Profile, IMapperMarker
     {

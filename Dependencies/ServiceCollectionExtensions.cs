@@ -1,9 +1,12 @@
 using AutoMapper;
-using Entities.AutoMapper.Profiles;
+using RootNamespace.Entities.AutoMapper.Profiles;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RootNamespace.Entities.Interfaces;
+#if (useMongoDB)
+using RootNamespace.Entities.Settings;
+#endif
 using RootNamespace.Repositories.Interfaces;
 using RootNamespace.Services.Interfaces;
 
@@ -34,11 +37,10 @@ namespace RootNamespace.Dependencies
 
         private static void SetupConfigurations(IServiceCollection services, IConfiguration configuration)
         {
-            // Here you can setup singletons to represent configurations
-            // Example
-            // var settings = configuration.GetSection("MySettings").Get<MySettings>();
-            //
-            // services.AddSingleton(settings);
+            #if (useMongoDB)
+            var mongoDbSettings = configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>();
+            services.AddSingleton(mongoDbSettings);
+            #endif
         }
 
         private static void SetupServices(IServiceCollection services)

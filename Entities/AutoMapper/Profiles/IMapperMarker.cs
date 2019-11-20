@@ -1,4 +1,4 @@
-namespace Entities.AutoMapper.Profiles
+namespace RootNamespace.Entities.AutoMapper.Profiles
 {
     public interface IMapperMarker
     {

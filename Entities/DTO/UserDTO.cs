@@ -1,7 +1,7 @@
 using System;
 using FluentValidation;
 
-namespace Entities.DTO
+namespace RootNamespace.Entities.DTO
 {
     public class UserDTO
     {
