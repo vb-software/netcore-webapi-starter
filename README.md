@@ -5,6 +5,7 @@
 * [Technologies](#technologies)
 * [Architecture](#architecture)
 * [Setup](#setup)
+* [MongoDB](#mongodb)
 * [Test API](#test-api)
 
 ## General info
@@ -86,7 +87,7 @@ Make sure that after the project is created you perform:
 $ dotnet restore
 ```
 
-## Create Project with MongoDB Boilerplate
+## MongoDB
 
 If you want to create a project that contains infrastructure for MongoDB, both for the backing data store AND structured logging, then use the --useMongoDB flag.
 
