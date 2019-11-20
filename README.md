@@ -101,6 +101,25 @@ Example of Structured Logging in logs collection:
 
 ![alt text](serilog-mongo.png "Serilog Mongo")
 
+Take a look at the different appsettings which now have boilerplate for MongoDBSettings:
+
+```json
+"MongoDBSettings": {
+    "ApplicationName": "your-app-name",
+    "Server": "localhost",
+    "Port": "27017",
+    "Timeout": 120,
+    "Admin": "",
+    "Password": ""
+  }
+```
+
+If you replace your-app-name with your own application name, i.e. MyApplication, then when you have repositories that extend MongoRepositoryBase and you write to collections... your local mongo instance will have a Database named MyApplication.
+
+Entities in Domain/Mongo should extend MongoIdentity, and have a [MongoDocument()] attribute applied to the class.
+
+In the concrete repository, there are Extension methods for IMongoDatabase that will use the attribute on generic class T, so that you don't have to specify the collection name.
+
 ## Test API
 
 Run the project
