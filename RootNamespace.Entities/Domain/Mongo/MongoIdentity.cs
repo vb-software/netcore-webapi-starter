@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
-namespace Entities.Domain.Mongo
+namespace RootNamespace.Entities.Domain.Mongo
 {
     [Serializable]
     public abstract class MongoIdentity

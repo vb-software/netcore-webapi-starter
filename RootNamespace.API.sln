@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{BA282229-FAC5-4740-B88B-DDBA89359F89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.API", "RootNamespace.API\RootNamespace.API.csproj", "{BA282229-FAC5-4740-B88B-DDBA89359F89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{19AFEBB5-E5C1-4659-83B0-56556C842908}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.Dependencies", "RootNamespace.Dependencies\RootNamespace.Dependencies.csproj", "{19AFEBB5-E5C1-4659-83B0-56556C842908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{5EE9D678-6627-4EAF-B84B-4968C5885E63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.Entities", "RootNamespace.Entities\RootNamespace.Entities.csproj", "{5EE9D678-6627-4EAF-B84B-4968C5885E63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories.Interfaces", "Repositories.Interfaces\Repositories.Interfaces.csproj", "{8709BB01-2745-4DB4-BE3C-C3B106A72984}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.Repositories.Interfaces", "RootNamespace.Repositories.Interfaces\RootNamespace.Repositories.Interfaces.csproj", "{8709BB01-2745-4DB4-BE3C-C3B106A72984}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{665E40D1-7172-43C4-8921-A498F335D814}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.Repositories", "RootNamespace.Repositories\RootNamespace.Repositories.csproj", "{665E40D1-7172-43C4-8921-A498F335D814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Interfaces", "Services.Interfaces\Services.Interfaces.csproj", "{C5B755BE-93F0-4AA9-8869-D75F9491074C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.Services.Interfaces", "RootNamespace.Services.Interfaces\RootNamespace.Services.Interfaces.csproj", "{C5B755BE-93F0-4AA9-8869-D75F9491074C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{92590671-1523-4BE6-8DF4-A265365314F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootNamespace.Services", "RootNamespace.Services\RootNamespace.Services.csproj", "{92590671-1523-4BE6-8DF4-A265365314F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

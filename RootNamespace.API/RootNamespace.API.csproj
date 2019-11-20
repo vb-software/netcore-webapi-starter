@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Services.Interfaces\Services.Interfaces.csproj" />
-    <ProjectReference Include="..\Entities\Entities.csproj" />
-    <ProjectReference Include="..\Dependencies\Dependencies.csproj" />
+    <ProjectReference Include="..\RootNamespace.Services.Interfaces\RootNamespace.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\RootNamespace.Entities\RootNamespace.Entities.csproj" />
+    <ProjectReference Include="..\RootNamespace.Dependencies\RootNamespace.Dependencies.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\RootNamespace.Services.Interfaces\RootNamespace.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\RootNamespace.Entities\RootNamespace.Entities.csproj" />
+    <ProjectReference Include="..\RootNamespace.Repositories.Interfaces\RootNamespace.Repositories.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>
