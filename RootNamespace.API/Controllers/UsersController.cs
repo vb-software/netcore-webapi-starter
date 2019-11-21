@@ -14,11 +14,17 @@ using RootNamespace.Repositories.Interfaces.Domain.Mongo;
 using RootNamespace.Entities.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+#if (useJwt)
+using Microsoft.AspNetCore.Authorization;
+#endif
 
 namespace RootNamespace.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    #if (useJwt)
+    [Authorize]
+    #endif
     public class UsersController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -47,10 +53,10 @@ namespace RootNamespace.API.Controllers
             return new List<User>
             {
                 new User {
-                    FirstName = "Steve",
-                    LastName = "VandenBrink",
+                    FirstName = "Mock",
+                    LastName = "User",
                     ID = 1,
-                    DateOfBirth = new System.DateTime(1982, 9, 14)
+                    DateOfBirth = DateTime.Now
                 }
             };
             #else
