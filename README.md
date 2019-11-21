@@ -6,6 +6,7 @@
 * [Architecture](#architecture)
 * [Setup](#setup)
 * [MongoDB](#mongodb)
+* [Jwt Authentication](#jwt-authentication)
 * [Test API](#test-api)
 
 ## General info
@@ -61,9 +62,13 @@ $ dotnet new vbswebapi --help
 VandenBrink Software Starter Web (C#)
 Author: Steve VandenBrink
 Options:                                                                              
-  -us|--useMongoDB  Sets up MongoDB with structered logging and boilerplate
-                    bool - Optional
-                    Default: false / (*) true
+  -mdb|--useMongoDB  Sets up MongoDB with structered logging and boilerplate   
+                     bool - Optional                                           
+                     Default: false / (*) true                                 
+
+  -jwt|--useJwt      Sets up Jwt middleware and hash/salt utilities boilerplate
+                     bool - Optional                                           
+                     Default: false / (*) true    
 ```
 
 For example, if you want to create a new project with the RootNamepace as 'MyProject', run the following
@@ -117,7 +122,15 @@ Also look at the repository (concrete class and interface) to see common CRUD op
 
 Example of 'users' collection:
 
+## Jwt Authentication
 
+If you want to create a project that has infrastructure for Jwt authentication, then use the --useJwt flag.
+
+When combined with the --useMongoDB flag, you have access to a full repository implementation that will register a user to the backing Mongo database and when logging in as that user you will receive a token with a few claims.
+
+Please note that when jwt is used the [Authorize] attribute is placed on the UsersController and testing in Swagger will no longer work at this time.
+
+A postman collection is contained in the repo so that you can import and use to test endpoints with authentication (using Bearer).
 
 ## Test API
 

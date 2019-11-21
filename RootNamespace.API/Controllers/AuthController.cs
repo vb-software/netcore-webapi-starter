@@ -74,7 +74,6 @@ namespace RootNamespace.API.Controllers
                     var userToCreate = new User
                     {
                         Username = userForRegisterDto.Username,
-                        Email = userForRegisterDto.Username,
                         FirstName = userForRegisterDto.FirstName.Trim(),
                         LastName = userForRegisterDto.LastName.Trim()
                     };
