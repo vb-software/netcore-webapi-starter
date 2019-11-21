@@ -48,6 +48,7 @@
         {
           "condition": "(!useJwt)",
           "exclude": [
+            "RootNamespace.API/Controllers/AuthController.cs",
             "RootNamespace.Entities/Settings/JwtSettings.cs"
           ]
         }

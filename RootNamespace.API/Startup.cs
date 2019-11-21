@@ -1,13 +1,23 @@
+using System.Text;
 using AutoWrapper;
 using FluentValidation.AspNetCore;
+#if (useJwt)
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+#endif
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+#if (useJwt)
+using Microsoft.IdentityModel.Tokens;
+#endif
 using Microsoft.OpenApi.Models;
 using RootNamespace.Dependencies;
+#if (useJwt)
+using RootNamespace.Entities.Settings;
+#endif
 
 namespace RootNamespace.API
 {
@@ -29,13 +39,33 @@ namespace RootNamespace.API
             //Disable Automatic Model State Validation built-in to ASP.NET Core
             services.Configure<ApiBehaviorOptions>(opt => { opt.SuppressModelStateInvalidFilter = true; });
 
+            #if (useJwt)
+            var jwtSettings = Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+
+            services.AddAuthentication(
+                opts =>
+                {
+                    opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }
+            )
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
+                };
+            });
+            #endif
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+                    .AllowAnyHeader());
             });
 
             //Register MVC/Web API and add FluentValidation Support
@@ -78,8 +108,10 @@ namespace RootNamespace.API
 
             app.UseRouting();
 
-            //Uncomment to enable Auth
-            //app.UseAuthorization();
+            #if (useJwt)
+            app.UseAuthentication();
+            app.UseAuthorization();
+            #endif
 
             app.UseEndpoints(endpoints =>
             {

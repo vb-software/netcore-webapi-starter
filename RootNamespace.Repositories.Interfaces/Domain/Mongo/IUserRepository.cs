@@ -8,9 +8,14 @@ namespace RootNamespace.Repositories.Interfaces.Domain.Mongo
 {
     public interface IUserRepository : IRepository
     {
-         Task<List<User>> GetUsers();
-         Task<User> GetUserById(ObjectId userId);
-         Task<User> AddNewUser(User userToAdd);
-         Task RemoveUser(User userToRemove);
+        Task<List<User>> GetUsers();
+        Task<User> GetUserById(ObjectId userId);
+        Task<User> AddNewUser(User userToAdd);
+        Task RemoveUser(User userToRemove);
+        #if (useJwt)
+        Task<User> Register(User user, string password);
+        Task<User> Login(string username, string password);
+        Task<bool> UserExists(string username);
+        #endif
     }
 }

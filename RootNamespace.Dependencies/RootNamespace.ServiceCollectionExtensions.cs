@@ -88,7 +88,7 @@ namespace RootNamespace.Dependencies
             services.Scan(scan =>
                 scan
                     .FromApplicationDependencies()
-                        .AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)).InNamespaces("Entities.DTO"))
+                        .AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)).InNamespaces("RootNamespace.Entities.DTO"))
                         .AsImplementedInterfaces()
                         .WithTransientLifetime()
             );
