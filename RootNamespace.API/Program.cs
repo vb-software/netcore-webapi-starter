@@ -31,8 +31,6 @@ namespace RootNamespace.API
             {
                 Log.CloseAndFlush();
             }
-
-            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
