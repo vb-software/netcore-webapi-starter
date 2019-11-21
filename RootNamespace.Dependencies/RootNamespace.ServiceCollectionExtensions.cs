@@ -4,7 +4,7 @@ using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RootNamespace.Entities.Interfaces;
-#if (useMongoDB)
+#if (useMongoDB || useJwt)
 using RootNamespace.Entities.Settings;
 #endif
 using RootNamespace.Repositories.Interfaces;
@@ -40,6 +40,10 @@ namespace RootNamespace.Dependencies
             #if (useMongoDB)
             var mongoDbSettings = configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>();
             services.AddSingleton(mongoDbSettings);
+            #endif
+            #if (useJwt)
+            var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
+            services.AddSingleton(jwtSettings);
             #endif
         }
 
@@ -84,7 +88,7 @@ namespace RootNamespace.Dependencies
             services.Scan(scan =>
                 scan
                     .FromApplicationDependencies()
-                        .AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)).InNamespaces("Entities.DTO"))
+                        .AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)).InNamespaces("RootNamespace.Entities.DTO"))
                         .AsImplementedInterfaces()
                         .WithTransientLifetime()
             );
