@@ -24,7 +24,7 @@ Project is created with:
 ## Architecture
 This starter template follows the onion architecture, although it is opionated in structure.
 
-The onion architecture promotes loose coupling and abstracting between domain, business, and service layers.
+The onion architecture promotes loose coupling and abstracting between domain, repository, and service layers.
 
 From the API, the hierarchy is as follows:
 
