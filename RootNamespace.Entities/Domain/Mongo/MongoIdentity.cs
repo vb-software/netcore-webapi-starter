@@ -1,7 +1,7 @@
 using System;
+using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
 
 namespace RootNamespace.Entities.Domain.Mongo
 {
@@ -14,7 +14,7 @@ namespace RootNamespace.Entities.Domain.Mongo
         public virtual ObjectId MongoId { get; set; }
 
         [BsonIgnore]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        // [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual string Id
         {
             get { return MongoId.ToString() == ObjectId.Empty.ToString() ? null : MongoId.ToString(); }

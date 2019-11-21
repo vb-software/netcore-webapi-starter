@@ -58,12 +58,12 @@ namespace RootNamespace.API.Controllers
             #endif
         }
 
-        [Route("{id:long}")]
+        [Route("{id}")]
         [HttpGet]
         #if (!useMongoDB)
         public async Task<User> GetUserById(long id)
         #else
-        public async Task<User> GetUserById(ObjectId id)
+        public async Task<User> GetUserById(string id)
         #endif
         {
             #if (!useMongoDB)
@@ -75,7 +75,7 @@ namespace RootNamespace.API.Controllers
                 ID = id
             };
             #else
-            return await _userRepo.GetUserById(id);
+            return await _userRepo.GetUserById(ObjectId.Parse(id));
             #endif
         }
 
@@ -90,7 +90,7 @@ namespace RootNamespace.API.Controllers
                     var user = _mapper.Map<User>(userDTO);
                     user.ID = 999;
                     #else
-                    var user = await _userRepo.AddOrReplaceUser(_mapper.Map<User>(userDTO));
+                    var user = await _userRepo.AddNewUser(_mapper.Map<User>(userDTO));
                     #endif
                     
                     return new ApiResponse("Created successfully", user, 201);

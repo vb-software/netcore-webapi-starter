@@ -17,14 +17,15 @@ namespace RootNamespace.Repositories.Domain.Mongo
             _mongoDbSettings = mongoDbSettings;
         }
 
-        public async Task<User> AddOrReplaceUser(User userToAdd)
+        public async Task<User> AddNewUser(User userToAdd)
         {
-            await GetCollection().ReplaceOneAsync(user => user.MongoId == userToAdd.MongoId, userToAdd, new UpdateOptions { IsUpsert = true });
+            await GetCollection().InsertOneAsync(userToAdd);
             return userToAdd;
         }
 
         public async Task<User> GetUserById(ObjectId userId)
         {
+            var filter = Builders<User>.Filter.Eq("_id", userId);
             var userFromRepo = await GetCollection().Find(user => user.MongoId == userId).FirstOrDefaultAsync();
             return userFromRepo;
         }

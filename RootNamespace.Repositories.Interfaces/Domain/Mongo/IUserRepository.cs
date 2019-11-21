@@ -10,7 +10,7 @@ namespace RootNamespace.Repositories.Interfaces.Domain.Mongo
     {
          Task<List<User>> GetUsers();
          Task<User> GetUserById(ObjectId userId);
-         Task<User> AddOrReplaceUser(User userToAdd);
+         Task<User> AddNewUser(User userToAdd);
          Task RemoveUser(User userToRemove);
     }
 }
