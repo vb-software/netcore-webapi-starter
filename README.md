@@ -62,7 +62,7 @@ $ dotnet new vbswebapi --help
 VandenBrink Software Starter Web (C#)
 Author: Steve VandenBrink
 Options:                                                                              
-  -mdb|--useMongoDB  Sets up MongoDB with structered logging and boilerplate   
+  -mdb|--useMongoDB  Sets up MongoDB with structured logging and boilerplate   
                      bool - Optional                                           
                      Default: false / (*) true                                 
 
