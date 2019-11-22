@@ -18,7 +18,7 @@
       "type": "parameter",
       "dataType": "bool",
       "defaultValue": "false",
-      "description": "Sets up MongoDB with structered logging and boilerplate"
+      "description": "Sets up MongoDB with structured logging and boilerplate"
     },
     "useJwt": {
       "type": "parameter",
