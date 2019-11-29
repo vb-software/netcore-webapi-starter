@@ -1,6 +1,6 @@
 namespace RootNamespace.Entities.DTO
 {
-    public class UserForRegisterDTO
+    public class UserForRegisterDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

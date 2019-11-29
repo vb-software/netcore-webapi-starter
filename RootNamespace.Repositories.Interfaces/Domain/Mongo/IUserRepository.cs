@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using RootNamespace.Entities.Domain.Mongo;
 using RootNamespace.Repositories.Interfaces;
-using MongoDB.Bson;
+using System;
 
 namespace RootNamespace.Repositories.Interfaces.Domain.Mongo
 {
     public interface IUserRepository : IRepository
     {
         Task<List<User>> GetUsers();
-        Task<User> GetUserById(ObjectId userId);
-        Task<User> AddNewUser(User userToAdd);
+        Task<User> GetUserById(Guid userGuid);
+        Task<User> GetUserByUsername(string username);
         Task RemoveUser(User userToRemove);
         #if (useJwt)
         Task<User> Register(User user, string password);
