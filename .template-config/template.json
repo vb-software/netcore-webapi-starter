@@ -29,22 +29,32 @@
     "useJenkinsfile": {
       "type": "parameter",
       "dataType": "bool",
-      "defaultValue": false
+      "defaultValue": false,
+      "description": "Includes a Jenkinsfile and Dockerfile for continuous integration"
     },
     "sonarServer": {
       "type": "parameter",
       "dataType": "string",
-      "replaces": "<sonar_server>"
+      "replaces": "<sonar_server>",
+      "description": "The remote SonarQube server to use for static code analysis in Jenkins CI"
     },
     "sonarProjectKey": {
       "type": "parameter",
       "dataType": "string",
-      "replaces": "<sonar_project>"
+      "replaces": "<sonar_project>",
+      "description": "The SonarQube project key (assumes you created a new project in SonarQube)"
     },
     "sonarProjectLogin": {
       "type": "parameter",
       "dataType": "string",
-      "replaces": "<sonar_login>"
+      "replaces": "<sonar_login>",
+      "description": "The SonarQube project login (assumes you created a new project in SonarQube)"
+    },
+    "useTests": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "false",
+      "description": "Adds a starting point for xUnit tests for the API controllers"
     }
   },
   "sources": [
@@ -77,6 +87,12 @@
           "exclude": [
             "Jenkinsfile",
             "Dockerfile"
+          ]
+        },
+        {
+          "condition": "(!useMongoDB || !useTests || !useJwt)",
+          "exclude": [
+            "RootNamespace.API.Tests/**/*"
           ]
         }
       ]

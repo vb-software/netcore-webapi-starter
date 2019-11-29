@@ -7,6 +7,8 @@
 * [Setup](#setup)
 * [MongoDB](#mongodb)
 * [Jwt Authentication](#jwt-authentication)
+* [Unit Tests](#unit-tests)
+* [Jenkins and SonarQube](#jenkins-and-sonarqube)
 * [Test API](#test-api)
 
 ## General info
@@ -131,6 +133,30 @@ When combined with the --useMongoDB flag, you have access to a full repository i
 Please note that when jwt is used the [Authorize] attribute is placed on the UsersController and testing in Swagger will no longer work at this time.
 
 A postman collection is contained in the repo so that you can import and use to test endpoints with authentication (using Bearer).
+
+## Unit Tests
+
+An additional parameter can be specified to include unit tests with xUnit, Moq, and the coverlet.msbuild package to generate coverage reports (can feed into SonarQube).
+
+Presently this flag only works if you are using MongoDB and Jwt.
+
+```
+dotnet new -n MyProject --useMongoDB --useJwt --useTests
+```
+
+Also, since this template includes a preconfigured solution, the tests project will have to be added to the solution.  Dotnet templates do not currently support conditionals for .sln files based on their documentation.
+
+```
+dotnet sln MyProject.API.sln add MyProject.API.Tests
+```
+
+## Jenkins and SonarQube
+
+Additional parameters can be specified to set up Jenkins CI with Code Coverage and Test Results
+
+```
+dotnet new vbswebapi -n MyProject --useJenkinsfile --sonarServer https://<server> --sonarProjectKey <sonar_project_key> --sonarProjectLogin <sonar_project_login>
+```
 
 ## Test API
 
