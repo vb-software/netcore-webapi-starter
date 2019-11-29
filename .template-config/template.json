@@ -28,7 +28,8 @@
     },
     "useJenkinsfile": {
       "type": "parameter",
-      "dataType": "string"
+      "dataType": "bool",
+      "defaultValue": false
     },
     "sonarServer": {
       "type": "parameter",

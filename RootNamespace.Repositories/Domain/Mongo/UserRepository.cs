@@ -4,7 +4,6 @@ using RootNamespace.Entities.Domain.Mongo;
 using RootNamespace.Entities.Settings;
 using RootNamespace.Repositories.Domain.Mongo.Extensions;
 using RootNamespace.Repositories.Mongo;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using RootNamespace.Repositories.Interfaces.Domain.Mongo;
 using System;

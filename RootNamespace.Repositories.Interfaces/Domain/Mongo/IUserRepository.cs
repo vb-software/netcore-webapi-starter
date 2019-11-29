@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RootNamespace.Entities.Domain.Mongo;
-using RootNamespace.Repositories.Interfaces;
 using System;
 
 namespace RootNamespace.Repositories.Interfaces.Domain.Mongo

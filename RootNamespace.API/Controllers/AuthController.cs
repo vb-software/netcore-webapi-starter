@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 #if (useMongoDB)
 using AutoWrapper.Wrappers;
 using AutoWrapper.Extensions;
-using Microsoft.Extensions.Logging;
+using System.Net;
 #endif
 
 namespace RootNamespace.API.Controllers

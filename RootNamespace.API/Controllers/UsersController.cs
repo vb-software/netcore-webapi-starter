@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoWrapper.Extensions;
-using AutoWrapper.Wrappers;
 #if (!useMongoDB)
 using RootNamespace.Entities.Domain;
 #else
 using RootNamespace.Entities.Domain.Mongo;
-using MongoDB.Bson;
 using RootNamespace.Repositories.Interfaces.Domain.Mongo;
 #endif
-using RootNamespace.Entities.DTO;
 using Microsoft.AspNetCore.Mvc;
 #if (useJwt)
 using Microsoft.AspNetCore.Authorization;
