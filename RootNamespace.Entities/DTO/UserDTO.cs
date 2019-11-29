@@ -3,20 +3,20 @@ using FluentValidation;
 
 namespace RootNamespace.Entities.DTO
 {
-    public class UserDTO
+    public class UserDto
     {
+        public Guid Guid { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
     }
 
-    public class UserDTOValidator : AbstractValidator<UserDTO>
+    public class UserDtoValidator : AbstractValidator<UserDto>
     {
-        public UserDTOValidator()
+        public UserDtoValidator()
         {
+            RuleFor(o => o.Guid).NotEqual(Guid.Empty);
             RuleFor(o => o.FirstName).NotEmpty();
             RuleFor(o => o.LastName).NotEmpty();
-            RuleFor(o => o.DateOfBirth).NotEmpty();
         }
     }
 }

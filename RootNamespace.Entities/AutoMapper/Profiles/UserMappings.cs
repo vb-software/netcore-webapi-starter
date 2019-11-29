@@ -13,7 +13,7 @@ namespace RootNamespace.Entities.AutoMapper.Profiles
         public UserMappings()
         {
             // Create bidirectional mapping from User -> UserDTO
-            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }
