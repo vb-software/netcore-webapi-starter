@@ -25,6 +25,26 @@
       "dataType": "bool",
       "defaultValue": "false",
       "description": "Sets up Jwt middleware and hash/salt utilities boilerplate"
+    },
+    "useJenkinsfile": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": false
+    },
+    "sonarServer": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "<sonar_server>"
+    },
+    "sonarProjectKey": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "<sonar_project>"
+    },
+    "sonarProjectLogin": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "<sonar_login>"
     }
   },
   "sources": [
@@ -50,6 +70,13 @@
           "exclude": [
             "RootNamespace.API/Controllers/AuthController.cs",
             "RootNamespace.Entities/Settings/JwtSettings.cs"
+          ]
+        },
+        {
+          "condition": "(!useJenkinsfile)",
+          "exclude": [
+            "Jenkinsfile",
+            "Dockerfile"
           ]
         }
       ]

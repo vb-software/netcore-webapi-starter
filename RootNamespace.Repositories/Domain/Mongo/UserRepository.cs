@@ -4,9 +4,9 @@ using RootNamespace.Entities.Domain.Mongo;
 using RootNamespace.Entities.Settings;
 using RootNamespace.Repositories.Domain.Mongo.Extensions;
 using RootNamespace.Repositories.Mongo;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using RootNamespace.Repositories.Interfaces.Domain.Mongo;
+using System;
 
 namespace RootNamespace.Repositories.Domain.Mongo
 {
@@ -17,16 +17,18 @@ namespace RootNamespace.Repositories.Domain.Mongo
             _mongoDbSettings = mongoDbSettings;
         }
 
-        public async Task<User> AddNewUser(User userToAdd)
+        public async Task<User> GetUserById(Guid userGuid)
         {
-            await GetCollection().InsertOneAsync(userToAdd);
-            return userToAdd;
+            var userFromRepo = await GetCollection().Find(user => user.Guid == userGuid).FirstOrDefaultAsync();
+            return userFromRepo;
         }
 
-        public async Task<User> GetUserById(ObjectId userId)
+        public async Task<User> GetUserByUsername(string username)
         {
-            var filter = Builders<User>.Filter.Eq("_id", userId);
-            var userFromRepo = await GetCollection().Find(user => user.MongoId == userId).FirstOrDefaultAsync();
+            var collection = Db.GetGlobalCollection<User>();
+
+            var userFromRepo = await collection.Find(x => x.Username == username).FirstOrDefaultAsync();
+
             return userFromRepo;
         }
 

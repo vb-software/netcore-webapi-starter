@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 #if (useMongoDB)
 using AutoWrapper.Wrappers;
 using AutoWrapper.Extensions;
-using Microsoft.Extensions.Logging;
+using System.Net;
 #endif
 
 namespace RootNamespace.API.Controllers
@@ -29,7 +29,6 @@ namespace RootNamespace.API.Controllers
     [AllowAnonymous]
     public class AuthController : Controller
     {
-        private readonly ILogger<AuthController> _logger;
         #if (useMongoDB)
         private readonly IUserRepository _userRepo;
         #endif
@@ -39,54 +38,44 @@ namespace RootNamespace.API.Controllers
             #if (useMongoDB)
             IUserRepository userRepo, 
             #endif
-            JwtSettings settings,
-            ILogger<AuthController> logger)
+            JwtSettings settings)
         {
             #if (useMongoDB)
             _userRepo = userRepo;
             #endif
             _settings = settings;
-            _logger = logger;
         }
 
         [HttpPost("register")]
 		#if (useMongoDB)
-        public async Task<ApiResponse> Register([FromBody] UserForRegisterDTO userForRegisterDto)
+        public async Task<ApiResponse> Register([FromBody] UserForRegisterDto userForRegisterDto)
 		#else
-        public async Task<IActionResult> Register([FromBody] UserForRegisterDTO userForRegisterDto)
+        public async Task<IActionResult> Register([FromBody] UserForRegisterDto userForRegisterDto)
 		#endif
         {
             #if (useMongoDB)
             if (ModelState.IsValid)
             {
-                try
+                if (!string.IsNullOrEmpty(userForRegisterDto.Username))
                 {
-                    if (!string.IsNullOrEmpty(userForRegisterDto.Username))
-                    {
-                        userForRegisterDto.Username = userForRegisterDto.Username.Trim().ToLower();
-                    }
-
-                    if (await _userRepo.UserExists(userForRegisterDto.Username))
-                    {
-                        ModelState.AddModelError("Username", "Username already exists");
-                    }
-
-                    var userToCreate = new User
-                    {
-                        Username = userForRegisterDto.Username,
-                        FirstName = userForRegisterDto.FirstName.Trim(),
-                        LastName = userForRegisterDto.LastName.Trim()
-                    };
-
-                    var createUser = await _userRepo.Register(userToCreate, userForRegisterDto.Password.Trim());
-
-                    return new ApiResponse("Created successfully", createUser, 201);
+                    userForRegisterDto.Username = userForRegisterDto.Username.Trim().ToLower();
                 }
-                catch (Exception ex)
+
+                if (await _userRepo.UserExists(userForRegisterDto.Username))
                 {
-                    _logger.Log(LogLevel.Error, ex, "Error while trying to create user.");
-                    throw;
+                    return new ApiResponse((int)HttpStatusCode.BadRequest, "User already exists with that username");
                 }
+
+                var userToCreate = new User
+                {
+                    Username = userForRegisterDto.Username,
+                    FirstName = userForRegisterDto.FirstName.Trim(),
+                    LastName = userForRegisterDto.LastName.Trim()
+                };
+
+                var createUser = await _userRepo.Register(userToCreate, userForRegisterDto.Password.Trim());
+
+                return new ApiResponse("Created successfully", createUser, 201);
             }
             else
             {
@@ -98,7 +87,7 @@ namespace RootNamespace.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserForLoginDTO userForLoginDto)
+        public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
         {
             #if (useMongoDB)
             var userFromRepo = await _userRepo.Login(userForLoginDto.Username.Trim().ToLower(), userForLoginDto.Password.Trim());
