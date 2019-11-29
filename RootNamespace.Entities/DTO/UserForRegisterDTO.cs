@@ -1,3 +1,5 @@
+using FluentValidation;
+
 namespace RootNamespace.Entities.DTO
 {
     public class UserForRegisterDto
