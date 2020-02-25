@@ -141,7 +141,7 @@ An additional parameter can be specified to include unit tests with xUnit, Moq, 
 Presently this flag only works if you are using MongoDB and Jwt.
 
 ```
-dotnet new -n MyProject --useMongoDB --useJwt --useTests
+dotnet new vbswebapi -n MyProject --useMongoDB --useJwt --useTests
 ```
 
 Also, since this template includes a preconfigured solution, the tests project will have to be added to the solution.  Dotnet templates do not currently support conditionals for .sln files based on their documentation.
