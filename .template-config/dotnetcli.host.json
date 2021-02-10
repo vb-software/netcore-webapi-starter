@@ -24,6 +24,10 @@
     "sonarProjectLogin": {
       "shortName": "rsl",
       "longName": "sonarProjectLogin"
+    },
+    "dockerNetwork": {
+      "shortName": "dn",
+      "longName": "dockerNetwork"
     }
   }
 }
