@@ -55,11 +55,23 @@
       "dataType": "bool",
       "defaultValue": "false",
       "description": "Adds a starting point for xUnit tests for the API controllers"
+    },
+    "dockerNetwork": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "<docker_network>",
+      "description": "The docker network that is sent to the docker build in Jenkinsfile"
     }
   },
   "sources": [
     {
       "modifiers": [
+        {
+          "exclude": [
+            ".template-config/**/*",
+            ".git/**/*"
+          ]
+        },
         {
           "condition": "(!useMongoDB)",
           "exclude": [
