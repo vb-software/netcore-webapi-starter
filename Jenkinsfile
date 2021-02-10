@@ -20,7 +20,7 @@ pipeline {
     stage('Begin SonarQube') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh "dotnet ${MSBUILD_SQ_SCANNER_HOME}/SonarScanner.MSBuild.dll begin /k:<sonar_project> /d:sonar.host.url=<sonar_server> /d:sonar.login=<sonar_login> /d:sonar.cs.opencover.reportsPaths=\'**/coverage.opencover.xml\' /d:sonar.branch.name=${BRANCH_NAME} /d:sonar.coverage.exclusions=\'***API/Program.cs,***API/Startup.cs\'"
+          sh "dotnet sonarscanner begin /k:<sonar_project> /d:sonar.host.url=<sonar_server> /d:sonar.login=<sonar_login> /d:sonar.cs.opencover.reportsPaths=\'**/coverage.opencover.xml\' /d:sonar.branch.name=${BRANCH_NAME} /d:sonar.coverage.exclusions=\'***API/Program.cs,***API/Startup.cs\'"
         }
       }
     }
@@ -41,7 +41,7 @@ pipeline {
     stage('End SonarQube') {
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh "dotnet ${MSBUILD_SQ_SCANNER_HOME}/SonarScanner.MSBuild.dll end /d:sonar.login=<sonar_login>"
+          sh "dotnet sonarscanner end /d:sonar.login=<sonar_login>"
         }
 
         timeout(time: 10, unit: 'MINUTES') {
