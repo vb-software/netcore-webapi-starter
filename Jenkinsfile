@@ -6,7 +6,10 @@ pipeline {
   }
 
   agent {
-    dockerfile true
+    dockerfile {
+      filename 'Dockerfile'
+      args '--net <docker_network>'
+    }
   }
   stages {
     stage('Restore NuGet Packages') {
