@@ -16,7 +16,7 @@ This project is intended to provide core functionality for a .NET Core Web API u
 	
 ## Technologies
 Project is created with:
-* .NET Core 3.0 (based on [ApiBolierPlate](https://github.com/proudmonkey/ApiBoilerPlate))
+* .NET Core 3.0 (based on [ApiBoilerPlate](https://github.com/proudmonkey/ApiBoilerPlate))
 * AutoWrapper
 * AutoMapper
 * FluentValidation
